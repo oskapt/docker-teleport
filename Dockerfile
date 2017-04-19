@@ -8,6 +8,8 @@ ENV TELEPORT_FILE $TELEPORT_NAME-v$TELEPORT_VERSION-linux-amd64-bin.tar.gz
 ENV TELEPORT_URL https://github.com/gravitational/teleport/releases/download/v$TELEPORT_VERSION/$TELEPORT_FILE
 ENV TELEPORT_HOME /usr/local/teleport
 
+ENV TELEPORT_NODENAME node
+
 
 RUN apt-get update \
  && apt-get install -y \
@@ -24,7 +26,7 @@ RUN appfolders add "teleport" "/var/lib/teleport"
 
 
 WORKDIR $TELEPORT_HOME
-CMD teleport start
+CMD teleport start --nodename=$TELEPORT_NODENAME
 
 
 VOLUME /usr/local/appdata/teleport
