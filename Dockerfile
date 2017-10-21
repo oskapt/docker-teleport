@@ -14,7 +14,7 @@ RUN apk --no-cache add curl bash openssh \
  && mv $TELEPORT_NAME $TELEPORT_HOME \
  && cd $TELEPORT_HOME \
  && ./install \
- && adduser -h /home/$TELEPORT_USER -s /bin/bash $TELEPORT_USER
+ && adduser -D -h /home/$TELEPORT_USER -s /bin/bash $TELEPORT_USER
 
 WORKDIR $TELEPORT_HOME
 COPY docker_files/start.sh /start.sh
